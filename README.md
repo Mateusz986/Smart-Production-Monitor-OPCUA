@@ -37,7 +37,7 @@ Zwykły `INT` w CODESYS to liczba 16-bitowa, z maksymalną wartością 32767. Pr
 
 ## Komunikacja OPC UA
 
-Sterownik udostępnia przez OPC UA kluczowe zmienne produkcyjne (`iItemCounter`, `rEfficiency`, `xRunSwitch`, `xLineFault`), skonfigurowane przez Symbol Configuration i mapowanie na serwerze OPC UA wbudowanym w CODESYS. Połączenie przetestowane end-to-end klientem UAExpert, z odczytem wartości na żywo, zmieniających się zgodnie z działaniem symulacji.
+Sterownik udostępnia przez OPC UA kluczowe zmienne produkcyjne (`iItemCounter`, `rEfficiency`, `xRunSwitch`, `xLineFault`), skonfigurowane przez Communication Manager i mapowanie na serwerze OPC UA wbudowanym w CODESYS. Połączenie przetestowane end-to-end klientem UAExpert, z odczytem wartości na żywo, zmieniających się zgodnie z działaniem symulacji.
 
 <img width="1908" height="1015" alt="Zrzut ekranu 2026-09-14 162842" src="https://github.com/user-attachments/assets/60e8e87c-de19-4d79-9b61-873b234b6b7d" />
 
