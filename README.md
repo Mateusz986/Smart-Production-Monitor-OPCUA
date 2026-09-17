@@ -48,9 +48,14 @@ Pierwszym krokiem było przetestowanie połączenia end-to-end z zewnętrznym kl
 Konfiguracja połączenia z zewnętrznym klientem wymagała kilku prób i weryfikacji ustawień po stronie serwera (port, mapowanie symboli, poziom bezpieczeństwa autoryzacji), zanim udało się uzyskać stabilne połączenie potwierdzone zrzutem ekranu powyżej.
 
 ### Klient Python (IIoT / Asynchroniczny)
+
 Po pomyślnych testach diagnostycznych, do odczytu danych w czasie rzeczywistym napisałem autorski, asynchroniczny klient w Pythonie (z użyciem biblioteki asyncua). Skrypt cyklicznie odpytuje serwer OPC UA z zachowaniem polityk bezpieczeństwa, symulując działanie nadrzędnego systemu klasy MES.
 
 <img width="431" height="545" alt="image" src="https://github.com/user-attachments/assets/1b619aed-cf9b-461e-8363-365ea5be6322" />
+
+### Zapis danych do bazy SQL
+
+Klient Pythona, obok wyświetlania odczytanych wartości, zapisuje je cyklicznie do bazy danych SQL, tworząc trwały log parametrów produkcyjnych w czasie. To domyka pełny łańcuch danych od logiki PLC, przez komunikację OPC UA, aż po archiwizację, dokładnie tak jak działałoby to w realnym systemie nadrzędnym zbierającym historię produkcji do dalszej analizy.
 
 ## Środowisko
 
@@ -58,7 +63,7 @@ Po pomyślnych testach diagnostycznych, do odczytu danych w czasie rzeczywistym 
 - Runtime: CODESYS Control Win V3 x64
 - Język: Structured Text (ST)
 - Komunikacja: OPC UA (serwer wbudowany w CODESYS), testowane klientem UAExpert
-- Skrypty / Integracja IT: Python (asyncua, obsługa certyfikatów bezpieczeństwa)
+- Skrypty / Integracja IT: Python (asyncua, obsługa certyfikatów bezpieczeństwa,  zapis danych do bazy SQL)
 
 ## Autor
 
