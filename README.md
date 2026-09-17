@@ -1,6 +1,6 @@
 # Smart-Production-Monitor-OPCUA
 
-Symulowane stanowisko produkcyjne zliczające wyprodukowane sztuki, napisane w języku Structured Text (ST) w środowisku CODESYS. Dane produkcyjne (licznik sztuk, wydajność, status linii) są udostępniane na zewnątrz przez OPC UA, tak jakby system nadrzędny (np. MES) monitorował postęp produkcji w czasie rzeczywistym.
+Symulowane stanowisko produkcyjne zliczające wyprodukowane sztuki, napisane w języku Structured Text (ST) w środowisku CODESYS. Dane produkcyjne (licznik sztuk, wydajność, status linii) są udostępniane na zewnątrz przez OPC UA, a następnie odczytywane w czasie rzeczywistym przez dedykowany, asynchroniczny klient napisanym w Pythonie, tak jakby zewnętrzny system nadrzędny (np. MES) monitorował postęp produkcji.
 
 
 <img width="1232" height="997" alt="image" src="https://github.com/user-attachments/assets/d001356f-2aa0-470c-bed0-4b252ff420b3" />
@@ -43,12 +43,19 @@ Sterownik udostępnia przez OPC UA kluczowe zmienne produkcyjne (`iItemCounter`,
 
 Konfiguracja połączenia z zewnętrznym klientem wymagała kilku prób i weryfikacji ustawień po stronie serwera (port, mapowanie symboli, poziom bezpieczeństwa autoryzacji), zanim udało się uzyskać stabilne połączenie potwierdzone zrzutem ekranu powyżej.
 
+### Klient Python (IIoT / Asynchroniczny)
+Poza weryfikacją w UAExpert, do odczytu danych w czasie rzeczywistym został napisy autorski asynchroniczny klient w **Pythonie** (z użyciem biblioteki `asyncua`). Obsługuje on uwierzytelnianie oparte na certyfikatach (zgodnie z wymogami bezpieczeństwa serwera OPC UA w CODESYS) oraz stabilny polling zmiennych produkcyjnych.
+
+<img width="728" height="282" alt="image" src="https://github.com/user-attachments/assets/0ff4aa52-e074-4d2c-ab51-0bc820c30edb" />
+
+
 ## Środowisko
 
 - CODESYS Development System V3
 - Runtime: CODESYS Control Win V3 x64
 - Język: Structured Text (ST)
 - Komunikacja: OPC UA (serwer wbudowany w CODESYS), testowane klientem UAExpert
+- Skrypty / Integracja IT: Python (asyncua, obsługa certyfikatów bezpieczeństwa)
 
 ## Autor
 
