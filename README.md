@@ -37,17 +37,20 @@ Zwykły `INT` w CODESYS to liczba 16-bitowa, z maksymalną wartością 32767. Pr
 
 ## Komunikacja OPC UA
 
-Sterownik udostępnia przez OPC UA kluczowe zmienne produkcyjne (`iItemCounter`, `rEfficiency`, `xRunSwitch`, `xLineFault`), skonfigurowane przez Communication Manager i mapowanie na serwerze OPC UA wbudowanym w CODESYS. Połączenie przetestowane end-to-end klientem UAExpert, z odczytem wartości na żywo, zmieniających się zgodnie z działaniem symulacji.
+Sterownik udostępnia przez OPC UA kluczowe zmienne produkcyjne (iItemCounter, rEfficiency, xRunSwitch, xLineFault), skonfigurowane przez Communication Manager i mapowanie na serwerze OPC UA wbudowanym w CODESYS. Całość została zweryfikowana dwuetapowo:
+
+### Weryfikacja w środowisku diagnostycznym (UAExpert)
+
+Pierwszym krokiem było przetestowanie połączenia end-to-end z zewnętrznym klientem Unified Automation UAExpert. Pozwoliło to na poprawne skonfigurowanie portów, zamapowanie symboli oraz obsługę certyfikatów bezpieczeństwa po stronie serwera. Połączenie zostało zweryfikowane na żywo, co potwierdza zrzut ekranu poniżej:
 
 <img width="1908" height="1015" alt="Zrzut ekranu 2026-09-14 162842" src="https://github.com/user-attachments/assets/60e8e87c-de19-4d79-9b61-873b234b6b7d" />
 
 Konfiguracja połączenia z zewnętrznym klientem wymagała kilku prób i weryfikacji ustawień po stronie serwera (port, mapowanie symboli, poziom bezpieczeństwa autoryzacji), zanim udało się uzyskać stabilne połączenie potwierdzone zrzutem ekranu powyżej.
 
 ### Klient Python (IIoT / Asynchroniczny)
-Poza weryfikacją w UAExpert, do odczytu danych w czasie rzeczywistym został napisy autorski asynchroniczny klient w **Pythonie** (z użyciem biblioteki `asyncua`). Obsługuje on uwierzytelnianie oparte na certyfikatach (zgodnie z wymogami bezpieczeństwa serwera OPC UA w CODESYS) oraz stabilny polling zmiennych produkcyjnych.
+Po pomyślnych testach diagnostycznych, do odczytu danych w czasie rzeczywistym napisałem autorski, asynchroniczny klient w Pythonie (z użyciem biblioteki asyncua). Skrypt cyklicznie odpytuje serwer OPC UA z zachowaniem polityk bezpieczeństwa, symulując działanie nadrzędnego systemu klasy MES.
 
-<img width="728" height="282" alt="image" src="https://github.com/user-attachments/assets/0ff4aa52-e074-4d2c-ab51-0bc820c30edb" />
-
+<img width="431" height="545" alt="image" src="https://github.com/user-attachments/assets/1b619aed-cf9b-461e-8363-365ea5be6322" />
 
 ## Środowisko
 
